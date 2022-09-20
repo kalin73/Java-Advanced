@@ -7,6 +7,7 @@ public class Decimal_to_Binary_Converter {
 		Scanner sc = new Scanner(System.in);
 		int n = Integer.parseInt(sc.nextLine());
 		ArrayDeque<Integer> result = new ArrayDeque<>();
+		sc.close();
 		if (n == 0) {
 			System.out.println(0);
 			return;
@@ -16,6 +17,7 @@ public class Decimal_to_Binary_Converter {
 			n /= 2;
 		}
 		result.forEach(x -> System.out.print(x));
+
 	}
 
 }
