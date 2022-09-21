@@ -1,4 +1,3 @@
-import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -8,7 +7,6 @@ public class Math_Potato {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		// ArrayDeque<String> queue = new ArrayDeque<>();
 		List<String> input = new ArrayList<>(Arrays.asList(sc.nextLine().split(" ")));
 		int n = Integer.parseInt(sc.nextLine());
 		int count = 0;
@@ -22,8 +20,10 @@ public class Math_Potato {
 			for (int i = 2; i < primeCicle; i++) {
 				if (!(primeCicle % i == 0)) {
 					isPrime = true;
+					
 				} else {
 					isPrime = false;
+					break;
 				}
 			}
 			if (count > input.size() - 1) {
@@ -35,7 +35,7 @@ public class Math_Potato {
 				remove = 0;
 				if (isPrime) {
 					System.out.println("Prime " + input.get(count));
-				
+				count--;
 				} else {
 					System.out.println("Removed " + input.get(count));
 					input.remove(count);
@@ -43,7 +43,6 @@ public class Math_Potato {
 					count--;
 
 				}
-
 			}
 			count++;
 			remove++;
