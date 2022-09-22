@@ -27,6 +27,7 @@ public class Maximum_Element {
 			}
 
 		}
+		sc.close();
 	}
 
 }
