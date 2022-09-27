@@ -21,7 +21,6 @@ public class Maximal_Sum {
 				arr[row][col] = sc.nextInt();
 
 			}
-
 		}
 		return arr;
 	}
