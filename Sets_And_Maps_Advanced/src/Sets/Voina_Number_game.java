@@ -15,6 +15,7 @@ public class Voina_Number_game {
 				Arrays.stream(sc.nextLine().split(" ")).map(x -> Integer.parseInt(x)).collect(Collectors.toList()));
 
 		int counter = 1;
+		sc.close();
 		while (counter <= 50) {
 
 			if (player1.isEmpty()) {
