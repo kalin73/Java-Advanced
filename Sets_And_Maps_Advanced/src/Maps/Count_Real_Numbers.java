@@ -1,7 +1,6 @@
 package Maps;
 
 import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Scanner;
@@ -13,7 +12,8 @@ public class Count_Real_Numbers {
 		Map<Double, Integer> map = new LinkedHashMap<>();
 
 		double[] arr = Arrays.stream(sc.nextLine().split(" ")).mapToDouble(x -> Double.parseDouble(x)).toArray();
-
+		sc.close();
+		
 		for (int i = 0; i < arr.length; i++) {
 			if (map.containsKey(arr[i])) {
 				map.put(arr[i], map.get(arr[i]) + 1);
