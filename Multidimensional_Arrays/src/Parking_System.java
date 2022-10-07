@@ -1,10 +1,8 @@
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.Map;
 import java.util.Scanner;
-import java.util.Set;
 
 public class Parking_System {
 
@@ -13,9 +11,9 @@ public class Parking_System {
 		int[] input = Arrays.stream(sc.nextLine().split(" ")).mapToInt(x -> Integer.parseInt(x)).toArray();
 		int r = input[0];
 		int c = input[1];
+		boolean[][] arr = new boolean[r][c];
+
 		Map<Integer, Integer> map = new HashMap<>();
-		Set<Integer> takenSpots = new HashSet<>();
-		int[][] arr = new int[r][c];
 		String[] coordinates = sc.nextLine().split(" ");
 
 		while (!coordinates[0].equals("stop")) {
@@ -23,55 +21,50 @@ public class Parking_System {
 			int spotRow = Integer.parseInt(coordinates[1]);
 			int spotCol = Integer.parseInt(coordinates[2]);
 			int distance = 1;
-			int newSpot = 0;
 			distance += Math.abs(start - spotRow);
-			int position = spotCol + spotRow;
 
-			if (!takenSpots.contains(position)) {
+			if (arr[spotRow][spotCol] == false) {
 
 				distance += spotCol;
-
 				System.out.println(distance);
+				arr[spotRow][spotCol] = true;
 				map.put(spotRow, 1);
-				takenSpots.add(position);
 				coordinates = sc.nextLine().split(" ");
 				continue;
 
-			} else if (takenSpots.contains(position)) {
+			} else {
+				int col1 = spotCol + 1;
+				int col2 = spotCol - 1;
 
-				if (map.get(spotRow) % 2 == 0) {
-					newSpot = spotCol + (map.get(spotRow) / 2);
-
-					if (newSpot < arr[0].length) {
-						distance += newSpot;
-						position = spotRow + newSpot;
-						takenSpots.add(position);
-						map.put(spotRow, map.get(spotRow) + 1);
-						System.out.println(distance);
-
-					}
-				} else if (map.get(spotRow) % 2 != 0 ) {
-
-					newSpot = spotCol - (map.get(spotRow) / 2) - 1;
-
-					if (newSpot > 0) {
-						distance += newSpot;
-						position = spotRow + newSpot;
-						takenSpots.add(position);
-						map.put(spotRow, map.get(spotRow) + 1);
-						System.out.println(distance);
-
-					}
-
-				} else {
+				if (map.get(spotRow) == c - 1) {
 					System.out.printf("Row %d full%n", spotRow);
+					coordinates = sc.nextLine().split(" ");
+					continue;
 				}
+				while (true) {
 
+					if (col2 > 0 && arr[spotRow][col2] == false) {
+						arr[spotRow][col2] = true;
+						distance += col2;
+						System.out.println(distance);
+						map.put(spotRow, map.get(spotRow) + 1);
+						break;
+
+					} else if (col1 < c && arr[spotRow][col1] == false) {
+						distance += col1;
+						System.out.println(distance);
+						arr[spotRow][col1] = true;
+						map.put(spotRow, map.get(spotRow) + 1);
+						break;
+
+					}
+					col1++;
+					col2--;
+				}
 			}
-
 			coordinates = sc.nextLine().split(" ");
 		}
-
+		sc.close();
 	}
 
 }
