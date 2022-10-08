@@ -11,6 +11,7 @@ public class Read_File {
 			System.out.print(Integer.toBinaryString(n) + " ");
 			n = inputStream.read();
 		}
+		inputStream.close();
 	}
 
 }
