@@ -15,7 +15,7 @@ public class Copy_Bytes {
 			outputStream = new FileOutputStream(path2);
 
 			int in = inputStream.read();
-			System.out.println(in);
+			
 			while (in >= 0) {
 
 				if (in == ' ' || in == '\n') {
