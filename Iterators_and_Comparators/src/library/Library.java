@@ -4,11 +4,9 @@ import java.util.Iterator;
 
 import book.Book;
 
-@SuppressWarnings("hiding")
-public class Library<Book> implements Iterable<Book> {
+public class Library<T> implements Iterable<Book> {
 	private Book[] books;
 
-	@SafeVarargs
 	public Library(Book... books) {
 
 		this.books = books;
