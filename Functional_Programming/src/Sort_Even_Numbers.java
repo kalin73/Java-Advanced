@@ -1,21 +1,33 @@
-import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
 import java.util.Scanner;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 public class Sort_Even_Numbers {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		ArrayList<Integer> numbers = (ArrayList<Integer>) Arrays.stream(sc.nextLine().split(", "))
-				.map(x -> Integer.parseInt(x)).collect(Collectors.toList());
+		Predicate<Integer> evenFilter = x -> x % 2 == 0;
+		Comparator<Integer> ascOrder = (first, second) -> first - second;
+
+		List<Integer> list = Arrays.stream(sc.nextLine().split(", "))
+				.map(Integer::parseInt)
+				.filter(evenFilter)
+				.collect(Collectors.toList());
 		
-		numbers.removeIf(x -> !(x % 2 == 0));
-		System.out.println(numbers.toString().replace("[", "").replace("]", ""));
+		String filtered = list.stream()
+				.map(x -> x.toString())
+				.collect(Collectors.joining(", "));
 		
-		numbers.sort((f, s) -> Integer.compare(f, s));
-		System.out.println(numbers.toString().replace("[", "").replace("]", ""));
-		
+		String sorted = list.stream()
+				.sorted(ascOrder).map(x -> x.toString())
+				.collect(Collectors.joining(", "));
+
+		System.out.println(filtered);
+		System.out.println(sorted);
+
 		sc.close();
 	}
 
