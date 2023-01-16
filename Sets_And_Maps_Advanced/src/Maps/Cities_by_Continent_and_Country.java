@@ -12,8 +12,6 @@ public class Cities_by_Continent_and_Country {
 		Scanner sc = new Scanner(System.in);
 		int n = Integer.parseInt(sc.nextLine());
 		Map<String, LinkedHashMap<String, List<String>>> continents = new LinkedHashMap<>();
-		LinkedHashMap<String, List<String>> countries = new LinkedHashMap<>();
-		List<String> cities = new ArrayList<>();
 
 		for (int i = 0; i < n; i++) {
 
@@ -22,36 +20,24 @@ public class Cities_by_Continent_and_Country {
 			String country = input[1];
 			String city = input[2];
 
-			if (!continents.containsKey(continent)) {
-				countries = new LinkedHashMap<>();
-				cities = new ArrayList<>();
-				cities.add(city);
-				countries.put(country, cities);
-				continents.put(continent, countries);
-				continue;
-			}
-			if (!continents.get(continent).containsKey(country)) {
-				countries = continents.get(continent);
-				cities = new ArrayList<>();
-				cities.add(city);
-				countries.put(country, cities);
-				continents.put(continent, countries);
-				continue;
+			continents.putIfAbsent(continent, new LinkedHashMap<>());
+			
+			LinkedHashMap<String, List<String>> countries = continents.get(continent);
+			
+			countries.putIfAbsent(country, new ArrayList<>());
+			
+			List<String> cities = countries.get(country);
+			
+			cities.add(city);
 
-			}
-
-			continents.get(continent).get(country).add(city);
 
 		}
 		continents.forEach((key, value) -> {
 			System.out.println(key + ":");
 			value.forEach((k, v) -> {
-				String cn = "";
+				String cn = String.join(", ", v);
 				System.out.print(k + " -> ");
-				for (String s : v) {
-					cn = cn + String.format("%s, ", s);
-				}
-				System.out.println(cn.substring(0, cn.length() - 2));
+				System.out.println(cn);
 			});
 
 		});
