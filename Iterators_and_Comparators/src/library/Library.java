@@ -1,7 +1,6 @@
 package library;
 
 import java.util.Iterator;
-
 import book.Book;
 
 public class Library<T> implements Iterable<Book> {
@@ -23,22 +22,16 @@ public class Library<T> implements Iterable<Book> {
 	}
 
 	private final class LibraryIterator implements Iterator<Book> {
-		private int counter = -1;
+		private int index = 0;
 
 		@Override
 		public boolean hasNext() {
-			counter++;
-			if (books.length > counter) {
-
-				return true;
-			}
-
-			return false;
+			return index < books.length;
 		}
 
 		@Override
 		public Book next() {
-			return books[counter];
+			return books[index++];
 		}
 
 	}
