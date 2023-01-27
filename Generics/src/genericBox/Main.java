@@ -9,10 +9,9 @@ public class Main {
 		int n = Integer.parseInt(sc.nextLine());
 
 		while (n-- > 0) {
-			GenericBox<String> box = new GenericBox<>(sc.nextLine());
+			GenericBox<Integer> box = new GenericBox<>(Integer.parseInt(sc.nextLine()));
 			System.out.println(box);
 		}
 		sc.close();
 	}
-
 }
