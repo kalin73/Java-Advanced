@@ -10,6 +10,6 @@ public class SwapClass {
 	}
 
 	public static <T> void print(List<T> list) {
-		list.forEach(x -> System.out.println(x.getClass().getName() + ": " + x));
+		list.forEach(x -> System.out.println(x));
 	}
 }

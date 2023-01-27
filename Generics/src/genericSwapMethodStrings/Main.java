@@ -8,12 +8,13 @@ public class Main {
 
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
-		List<String> strings = new ArrayList<>();
+		List<GenericBox<Integer>> strings = new ArrayList<>();
 
 		int n = Integer.parseInt(sc.nextLine());
 
 		while (n-- > 0) {
-			strings.add(sc.nextLine());
+			GenericBox<Integer> box = new GenericBox<>(Integer.parseInt(sc.nextLine()));
+			strings.add(box);
 		}
 
 		int index1 = sc.nextInt();
